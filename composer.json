@@ -1,0 +1,15 @@
+{
+    "name": "vendor/php-project1",
+    "description": "Description of project PhpProject1.",
+    "authors": [
+        {
+            "name": "admin",
+            "email": "your@email.here"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phing/phing": "dev-master"
+    }
+}
