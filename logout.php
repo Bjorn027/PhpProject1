@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Mafia Game</title>
+    <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,14 +14,6 @@
     
   </head>
   <body>
-  <?php
-        $dbhost = "localhost";
-        $dbname = "usermoney";
-        $dbuser = "root";
-        
-        $con = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser);
-        
-        ?>
   <nav class="navbar">
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
@@ -33,8 +25,32 @@
         </div>
 
         <ul class="list-unstyled test components">
-            <br><br>
-    <table>
+            <br><br><br>
+            <li>
+            <button type="button" onclick="location.href='/PhpProject1/index.php'" class="btn btn-outline-danger btn-block">Login</button>
+            </li>
+            
+        </ul>
+
+    </nav>
+    <!-- Page Content -->
+    <div id="content">
+
+        
+    </div>
+</div>
+
+  
+  <?php
+        $dbhost = "localhost";
+        $dbname = "usermoney";
+        $dbuser = "root";
+        
+        $con = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser);
+        
+        ?>
+        <main>
+            <table>
         <tr>
             
             
@@ -48,70 +64,12 @@
             while($row = $stm->fetch()){
                 echo "<tr>"
                 
-                . "<td><h5>{$row['Name']}</h5></td>"
-                . "</tr>";
-            }
-        ?>
-        <?php
-            $query = "SELECT Name, Money FROM cash WHERE Name = 'Alucard'";
-            $stm = $con->prepare($query);
-            $stm->execute();
-            $stm->setFetchMode(PDO::FETCH_ASSOC);
-            
-            while($row = $stm->fetch()){
-                echo "<tr>"
-                
-                . "<td>Money".":"."</td>"
-                . "<td>"  ."$" ."{$row['Money']}</td>"
-                . "</tr>";
-            }
-        ?>
-        <?php
-            $query = "SELECT Name, Rank FROM rank WHERE Name = 'Alucard'";
-            $stm = $con->prepare($query);
-            $stm->execute();
-            $stm->setFetchMode(PDO::FETCH_ASSOC);
-            
-            while($row = $stm->fetch()){
-                echo "<tr>"
-                
-                . "<td>Rank".":"."</td>"
-                . "<td>" . "&nbsp" . "{$row['Rank']}</td>"
+                . "<td>{$row['Name']}</td>"
+                . "<td>{$row['Money']}</td>"
                 . "</tr>";
             }
         ?>
     </table>
-            <br>
-            <li>
-            <button type="button" onclick="location.href='/PhpProject1/mail.php'" class="btn btn-outline-danger btn-block">Mail</button>
-            </li>
-            <li>
-            <button type="button" onclick="location.href='/PhpProject1/mug.php'" class="btn btn-outline-danger btn-block">Mug</button>
-            </li>
-            <li>
-            <button type="button" onclick="location.href='/PhpProject1/shoot.php'" class="btn btn-outline-danger btn-block">Shoot</button>
-            </li>
-            
-            <li>
-            <button type="button" onclick="location.href='/PhpProject1/drugs.php'" class="btn btn-outline-danger btn-block">Drugs</button>
-            </li>
-            <li>
-            <button type="button" onclick="location.href='/PhpProject1/logout.php'" class="btn btn-outline-danger btn-block">Logout</button>
-            </li>
-        </ul>
-
-    </nav>
-    <!-- Page Content -->
-    <div id="content">
-
-        
-    </div>
-</div>
-
-  
-  
-        <main>
-            
         </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
