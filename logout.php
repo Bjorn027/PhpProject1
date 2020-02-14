@@ -17,11 +17,32 @@
   <nav class="navbar">
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
+  <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <div class="fadeIn first"><h3 class="brighten">
+      Mafia Game</h3>
+    </div>
+    <br>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth btn-outline-danger" value="Register">
+      <input type="submit" class="fadeIn fourth btn-outline-danger" value="Log In">
+    </form>
+
+    
+
+  </div>
+</div>
   <div class="wrapper">
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>My Game</h3>
+            <h3>Mafia Game</h3>
         </div>
 
         <ul class="list-unstyled test components">

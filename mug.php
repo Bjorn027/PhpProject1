@@ -9,11 +9,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     
   </head>
   <body>
+      
   <?php
         $dbhost = "localhost";
         $dbname = "usermoney";
@@ -25,11 +27,28 @@
   <nav class="navbar">
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
+  <div class="testy">
+  <form>
+  <div class="form-group container wrapper fadeInDown">
+      <div id="formContent"
+      
+        <label class="fadeIn first"><h5>Who would you like to mug?</h5></label><br>
+        <small class="fadeIn second">Be careful. Some users do not take kindly to being stolen from. You may find yourself six feet under.</small>
+        <br><br>
+        <input type="text" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
+        <button type="submit" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+      </div>
+    </div>
+  </div>
+  
+</form>
+            
+        </div>
   <div class="wrapper">
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>My Game</h3>
+            <h3>Mafia Game</h3>
         </div>
 
         <ul class="list-unstyled test components">

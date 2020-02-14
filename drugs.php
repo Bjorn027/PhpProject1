@@ -29,7 +29,7 @@
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>My Game</h3>
+            <h3>Mafia Game</h3>
         </div>
 
         <ul class="list-unstyled test components">

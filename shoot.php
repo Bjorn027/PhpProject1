@@ -25,11 +25,28 @@
   <nav class="navbar">
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
+  <div class="testy">
+  <form>
+  <div class="form-group container wrapper fadeInDown">
+      <div id="formContent"
+        
+        <label class="fadeIn first"><h5>Who would you like to shoot?</h5></label><br>
+        <small class="fadeIn second">Be careful. Some users do not take kindly to being attacked. You may find yourself six feet under.</small>
+        <br><br>
+        <input type="text" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
+        <button type="submit" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+      
+    </div>
+  </div>
+  
+</form>
+            
+        </div>
   <div class="wrapper">
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>My Game</h3>
+            <h3>Mafia Game</h3>
         </div>
 
         <ul class="list-unstyled test components">

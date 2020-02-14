@@ -25,11 +25,30 @@
   <nav class="navbar">
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
+
+  <div class="testy">
+  <form>
+  <div class="form-group container wrapper fadeInDown">
+      <div id="formContent"
+      
+        <label class="fadeIn first"><h5>Who would you like to mail?</h5></label><br>
+        
+        <input type="text" class="form-control fadeIn third" placeholder="Enter Name"><br>
+        <textarea name="sendmail" rows="7" cols="50" placeholder="Enter what you would like to send"></textarea>
+        <button type="submit" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+      </div>
+    </div>
+  </div>
+  
+</form>
+            
+        </div>
+
   <div class="wrapper">
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>My Game</h3>
+            <h3>Mafia Game</h3>
         </div>
 
         <ul class="list-unstyled test components">
