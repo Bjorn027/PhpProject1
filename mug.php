@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
+    <script src="actions.php"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     
@@ -36,7 +36,7 @@
         <small class="fadeIn second">Be careful. Some users do not take kindly to being stolen from. You may find yourself six feet under.</small>
         <br><br>
         <input type="text" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
-        <button type="submit" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+        <button type="submit" onclick="mug()" class="btn btn-outline-danger fadeIn fifth">Submit</button>
       </div>
     </div>
   </div>
@@ -115,7 +115,7 @@
             <button type="button" onclick="location.href='/PhpProject1/drugs.php'" class="btn btn-outline-danger btn-block">Drugs</button>
             </li>
             <li>
-            <button type="button" onclick="location.href='/PhpProject1/logout.php'" class="btn btn-outline-danger btn-block">Logout</button>
+            <button type="button" onclick="location.href='/PhpProject1/index.php'" class="btn btn-outline-danger btn-block">Logout</button>
             </li>
         </ul>
 

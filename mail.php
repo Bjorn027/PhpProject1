@@ -115,7 +115,7 @@
             <button type="button" onclick="location.href='/PhpProject1/drugs.php'" class="btn btn-outline-danger btn-block">Drugs</button>
             </li>
             <li>
-            <button type="button" onclick="location.href='/PhpProject1/logout.php'" class="btn btn-outline-danger btn-block">Logout</button>
+            <button type="button" onclick="location.href='/PhpProject1/index.php'" class="btn btn-outline-danger btn-block">Logout</button>
             </li>
         </ul>
 
