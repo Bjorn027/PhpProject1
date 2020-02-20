@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="actions.php"></script>
+    
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     
@@ -29,10 +29,10 @@
 
     <!-- Login Form -->
     <form>
-      <input type="text" id="username" class="fadeIn second" name="login" placeholder="username">
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" onclick="register()" class="fadeIn fourth btn-outline-danger" value="Register">
-      <input type="submit" onclick="login()" class="fadeIn fourth btn-outline-danger" value="Log In">
+      <input type="text" id="username" class="fadeIn second"  placeholder="username">
+      <input type="password" id="password" class="fadeIn third"  placeholder="password">
+      <input type="button" onclick="register()" class="fadeIn fourth btn-outline-danger" value="Register">
+      <input type="button" onclick="login()" class="fadeIn fourth btn-outline-danger" value="Log In">
     </form>
 
     
@@ -95,32 +95,41 @@
         </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
      var server = 'actions.php'
-
+     
 function register(){
   var data = {
     action: "register",
-    username: $('#rusername').val(),
-    password: $('#rpassword').val()
+    username: $('#username').val(),
+    password: $('#password').val()
   }
   $.post(server, data, (res) => {
     $('#res').html(res)
+    //if (loggedin == true){
+    //  window.location.href='/PhpProject1/mail.php'
+    //}
+    //else{
+    //  alert("please include username and pass")
+    //}
   })
+  
 }
 
 function login(){
   var data = {
     action: "login",
-    username: $('#lusername').val(),
-    password: $('#lpassword').val()
+    username: $('#username').val(),
+    password: $('#password').val()
   }
   $.post(server, data, (res) => {
     $('#res').html(res)
+    
   })
+  
 }
 
 function logout(){
