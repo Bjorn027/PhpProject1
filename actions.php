@@ -22,6 +22,9 @@ switch ($action) {
     case "logout":
         logout();
         break;
+    case "mug":
+        mug();
+        break;
     default:
         $res->message = "No action provided";
 }
@@ -96,8 +99,26 @@ function login()
 function logout()
 {
     global $res;
+    $res->success = true;
     session_start();
     session_destroy();
     
 }
+
+function mug(){
+    global $res, $db;
+    
+    if ($stm->execute()) {
+        $res->success = true;
+    } else {
+        $res->message = "Database error";
+    }
+    $mugMoney = rand(200,500);
+      $message = "Success you stole $". $mugMoney . " from your target!";
+      echo "<script type='text/javascript'>alert('$message');</script>";
+}
+
+   
+
+
 

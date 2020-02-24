@@ -48,9 +48,7 @@
 
         <ul class="list-unstyled test components">
             <br><br><br>
-            <li>
-            <button type="button" onclick="location.href='/PhpProject1/mail.php'" class="btn btn-outline-danger btn-block">Login</button>
-            </li>
+            
             
         </ul>
 
@@ -64,6 +62,10 @@
 
   
   <?php
+    session_start();
+    if ($_SESSION){
+      header("location:mail.php");
+    }
         $dbhost = "localhost";
         $dbname = "usermoney";
         $dbuser = "root";
@@ -109,12 +111,12 @@ function register(){
   }
   $.post(server, data, (res) => {
     $('#res').html(res)
-    //if (loggedin == true){
-    //  window.location.href='/PhpProject1/mail.php'
-    //}
-    //else{
-    //  alert("please include username and pass")
-    //}
+     if (res.success == true){
+       window.location.href='/PhpProject1/mail.php'
+     }
+     else{
+       alert(res.message)
+     }
   })
   
 }
@@ -128,6 +130,13 @@ function login(){
   $.post(server, data, (res) => {
     $('#res').html(res)
     
+    if (res.success == true){
+       window.location.href='/PhpProject1/mail.php'
+     }
+     else{
+       alert(res.message)
+     }
+
   })
   
 }
