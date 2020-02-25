@@ -66,10 +66,11 @@
         
         <tr>
         <td>
-        <h5>
+        <h5>&nbsp;
         <?php
         
           echo $_SESSION['username'];
+          
             
          ?>
          </h5>
@@ -77,7 +78,7 @@
         </tr>
         
         <?php
-            $query = "SELECT Name, Money FROM cash WHERE Name = 'Alucard'";
+            $query = "SELECT username, money FROM user WHERE username = '$_SESSION[username]'";
             $stm = $con->prepare($query);
             $stm->execute();
             $stm->setFetchMode(PDO::FETCH_ASSOC);
@@ -86,24 +87,11 @@
                 echo "<tr>"
                 
                 . "<td>Money".":"."</td>"
-                . "<td>"  ."$" ."{$row['Money']}</td>"
+                . "<td>"  ."$" ."{$row['money']}</td>"
                 . "</tr>";
             }
         ?>
-        <?php
-            $query = "SELECT Name, Rank FROM rank WHERE Name = 'Alucard'";
-            $stm = $con->prepare($query);
-            $stm->execute();
-            $stm->setFetchMode(PDO::FETCH_ASSOC);
-            
-            while($row = $stm->fetch()){
-                echo "<tr>"
-                
-                . "<td>Rank".":"."</td>"
-                . "<td>" . "&nbsp" . "{$row['Rank']}</td>"
-                . "</tr>";
-            }
-        ?>
+        
     </table>
             <br>
             <li>
@@ -117,7 +105,7 @@
             </li>
             
             <li>
-            <button type="button" onclick="location.href='/PhpProject1/drugs.php'" class="btn btn-outline-danger btn-block">Drugs</button>
+            <button type="button" onclick="location.href='/PhpProject1/userlist.php'" class="btn btn-outline-danger btn-block">Userlist</button>
             </li>
             <li>
             <button type="button" onclick="logout()" class="btn btn-outline-danger btn-block">Logout</button>

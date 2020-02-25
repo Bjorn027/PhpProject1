@@ -29,6 +29,53 @@
   <nav class="navbar">
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
+
+
+  <div class="testy">
+  <form>
+  <div class="form-group container wrapper fadeInDown">
+      <div id="formContent"
+      
+        <label class="fadeIn first"><h5>Users List</h5></label><br>
+        
+        <form>
+        <table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">UserID</th>
+      <th scope="col">Username</th>
+      <th scope="col">Money</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <?php
+            $query = "SELECT * FROM user";
+            $stm = $con->prepare($query);
+            $stm->execute();
+            $stm->setFetchMode(PDO::FETCH_ASSOC);
+            
+            while($row = $stm->fetch()){
+                echo "<tr>"
+                
+                . "<td>"."{$row['ID']}</td>"
+                . "<td>" ."{$row['username']}</td>"
+                . "<td>"  ."$" ."{$row['money']}</td>";
+            }
+        ?>
+
+  </tbody>
+  </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</form>
+            
+        </div>
+
+
   <div class="wrapper">
     <!-- Sidebar -->
     <nav id="sidebar">
@@ -45,7 +92,7 @@
         </tr>
         <tr>
         <td>
-        <h5>
+        <h5>&nbsp;
         <?php
         
           echo $_SESSION['username'];
@@ -55,7 +102,7 @@
         </td>
         </tr>
         <?php
-            $query = "SELECT Name, Money FROM cash WHERE Name = 'Alucard'";
+            $query = "SELECT username, money FROM user WHERE username = '$_SESSION[username]'";
             $stm = $con->prepare($query);
             $stm->execute();
             $stm->setFetchMode(PDO::FETCH_ASSOC);
@@ -64,24 +111,11 @@
                 echo "<tr>"
                 
                 . "<td>Money".":"."</td>"
-                . "<td>"  ."$" ."{$row['Money']}</td>"
+                . "<td>"  ."$" ."{$row['money']}</td>"
                 . "</tr>";
             }
         ?>
-        <?php
-            $query = "SELECT Name, Rank FROM rank WHERE Name = 'Alucard'";
-            $stm = $con->prepare($query);
-            $stm->execute();
-            $stm->setFetchMode(PDO::FETCH_ASSOC);
-            
-            while($row = $stm->fetch()){
-                echo "<tr>"
-                
-                . "<td>Rank".":"."</td>"
-                . "<td>" . "&nbsp" . "{$row['Rank']}</td>"
-                . "</tr>";
-            }
-        ?>
+        
     </table>
             <br>
             <li>
@@ -95,7 +129,7 @@
             </li>
             
             <li>
-            <button type="button" onclick="location.href='/PhpProject1/drugs.php'" class="btn btn-outline-danger btn-block">Drugs</button>
+            <button type="button" onclick="location.href='/PhpProject1/userlist.php'" class="btn btn-outline-danger btn-block">Userlist</button>
             </li>
             <li>
             <button type="button" onclick="logout();location.href='/PhpProject1/index.php'" class="btn btn-outline-danger btn-block">Logout</button>

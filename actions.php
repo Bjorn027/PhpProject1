@@ -25,6 +25,9 @@ switch ($action) {
     case "mug":
         mug();
         break;
+    case "shoot":
+        shoot();
+        break;
     default:
         $res->message = "No action provided";
 }
@@ -47,7 +50,7 @@ function register()
 
     $passHash = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = 'INSERT INTO user (username, passhash) VALUE (:username, :pass)';
+    $query = 'INSERT INTO user (username, passhash, money) VALUE (:username, :pass, 10000)';
     $stm = $db->prepare($query);
 
     $stm->bindParam(":username", $username);
@@ -107,17 +110,66 @@ function logout()
 
 function mug(){
     global $res, $db;
+
+    $username2 = $_POST['username'] ?? false;
+    
+    
+    if (!$username2) {
+        $res->message = "You forgot to enter who you are mugging";
+        return;
+    }
+    
+    else {
+        $res->message = "User is dead or doesnt exist";
+    }
+    $mugmoney = rand(100, 200);
+
+    $query = "UPDATE user set money = money - $mugmoney where username = :username;
+              UPDATE user set money = money + $mugmoney where username = '$_SESSION[username]'";
+    
+
+    $stm = $db->prepare($query);
+    $stm->bindParam(":username", $username2);
     
     if ($stm->execute()) {
+        if ($stm->rowCount() == 2){
+            $res->message = "You stole " . $mugmoney . " from him";
+        }
         $res->success = true;
     } else {
         $res->message = "Database error";
     }
-    $mugMoney = rand(200,500);
-      $message = "Success you stole $". $mugMoney . " from your target!";
-      echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
+function shoot()
+{
+    global $res, $db;
+
+    $username1 = $_POST['username'] ?? false;
+    
+    if (!$username1) {
+        $res->message = "You forgot to enter who you are shooting";
+        return;
+    }
+    
+    else {
+        $res->message = "User is dead or doesnt exist";
+    }
+
+    $query = 'DELETE from user WHERE username = :username';
+    $stm = $db->prepare($query);
+
+    $stm->bindParam(":username", $username1);
+    
+    if ($stm->execute()) {
+        if ($stm->rowCount() == 1){
+            $res->message = "Ripperoni he's sleeping with the fishes";
+        }
+        $res->success = true;
+    } else {
+        $res->message = "Database error";
+    }
+}
    
 
 

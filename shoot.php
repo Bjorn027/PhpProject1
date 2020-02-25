@@ -38,8 +38,8 @@
         <small class="fadeIn second">Be careful. Some users do not take kindly to being attacked. You may find yourself six feet under.</small>
         <br><br>
         <form>
-        <input type="text" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
-        <button type="button" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+        <input type="text" id="username1" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
+        <button type="button" onclick="shoot()" class="btn btn-outline-danger fadeIn fifth">Submit</button>
         </form>
     </div>
   </div>
@@ -63,7 +63,7 @@
         </tr>
         <tr>
         <td>
-        <h5>
+        <h5>&nbsp;
         <?php
         
           echo $_SESSION['username'];
@@ -73,7 +73,7 @@
         </td>
         </tr>
         <?php
-            $query = "SELECT Name, Money FROM cash WHERE Name = 'Alucard'";
+            $query = "SELECT username, money FROM user WHERE username = '$_SESSION[username]'";
             $stm = $con->prepare($query);
             $stm->execute();
             $stm->setFetchMode(PDO::FETCH_ASSOC);
@@ -82,24 +82,11 @@
                 echo "<tr>"
                 
                 . "<td>Money".":"."</td>"
-                . "<td>"  ."$" ."{$row['Money']}</td>"
+                . "<td>"  ."$" ."{$row['money']}</td>"
                 . "</tr>";
             }
         ?>
-        <?php
-            $query = "SELECT Name, Rank FROM rank WHERE Name = 'Alucard'";
-            $stm = $con->prepare($query);
-            $stm->execute();
-            $stm->setFetchMode(PDO::FETCH_ASSOC);
-            
-            while($row = $stm->fetch()){
-                echo "<tr>"
-                
-                . "<td>Rank".":"."</td>"
-                . "<td>" . "&nbsp" . "{$row['Rank']}</td>"
-                . "</tr>";
-            }
-        ?>
+        
     </table>
             <br>
             <li>
@@ -113,7 +100,7 @@
             </li>
             
             <li>
-            <button type="button" onclick="location.href='/PhpProject1/drugs.php'" class="btn btn-outline-danger btn-block">Drugs</button>
+            <button type="button" onclick="location.href='/PhpProject1/userlist.php'" class="btn btn-outline-danger btn-block">Userlist</button>
             </li>
             <li>
             <button type="button" onclick="logout()" class="btn btn-outline-danger btn-block">Logout</button>
@@ -152,7 +139,23 @@
     }
   })
 }
-    </script>
+
+function shoot(){
+  var data = {
+    action: "shoot",
+    username: $('#username1').val()
+  }
+  $.post(server, data, (res) => {
+    $('#res').html(res)
+     if (res.success == true){
+       alert(res.message)
+     }
+     else alert("You forgot to enter who you are shooting")
+     
+  })
   
+}
+    </script>
+    
   </body>
 </html>
