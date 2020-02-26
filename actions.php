@@ -28,6 +28,18 @@ switch ($action) {
     case "shoot":
         shoot();
         break;
+    case "crime":
+        crime();
+        break;
+    case "crime2":
+        crime2();
+        break;
+    case "crime3":
+        crime3();
+        break;
+    case "crime4":
+        crime4();
+        break;
     default:
         $res->message = "No action provided";
 }
@@ -122,18 +134,20 @@ function mug(){
     else {
         $res->message = "User is dead or doesnt exist";
     }
-    $mugmoney = rand(100, 200);
+    $mugmoney = rand(700, 1200);
 
     $query = "UPDATE user set money = money - $mugmoney where username = :username;
-              UPDATE user set money = money + $mugmoney where username = '$_SESSION[username]'";
+              UPDATE user set money = money + $mugmoney where username = :curruser";
     
-
+    session_start();
     $stm = $db->prepare($query);
     $stm->bindParam(":username", $username2);
+    $stm->bindParam(":curruser", $_SESSION['username']);
     
     if ($stm->execute()) {
-        if ($stm->rowCount() == 2){
-            $res->message = "You stole " . $mugmoney . " from him";
+        $res->session = $_SESSION;
+        if ($stm->rowCount() == 1){
+            $res->message = "You stole $" . $mugmoney . " of " . $username2 . "'s hard earned money";
         }
         $res->success = true;
     } else {
@@ -163,14 +177,107 @@ function shoot()
     
     if ($stm->execute()) {
         if ($stm->rowCount() == 1){
-            $res->message = "Ripperoni he's sleeping with the fishes";
+            $res->message = "Ripperoni " . $username1 . " is sleeping with the fishes";
         }
         $res->success = true;
     } else {
         $res->message = "Database error";
     }
 }
-   
 
 
+function crime(){
+    global $res, $db;
 
+    $crimeType = $_POST['crimeType'] ?? false;
+
+    $crimeMoney = rand(2000, 3000);
+
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    
+    session_start();
+    $stm = $db->prepare($query);
+    $stm->bindParam(":curruser", $_SESSION['username']);
+    
+    if ($stm->execute()) {
+        $res->session = $_SESSION;
+        if ($stm->rowCount() == 1){
+            $res->message = "You did the crime " . $crimeType . " and walked away with $" . $crimeMoney;
+        }
+        $res->success = true;
+    } else {
+        $res->message = "Database error";
+    }
+}
+
+function crime2(){
+    global $res, $db;
+
+    $crimeType2 = $_POST['crimeType2'] ?? false;
+
+    $crimeMoney = rand(600, 1000);
+
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    
+    session_start();
+    $stm = $db->prepare($query);
+    $stm->bindParam(":curruser", $_SESSION['username']);
+    
+    if ($stm->execute()) {
+        $res->session = $_SESSION;
+        if ($stm->rowCount() == 1){
+            $res->message = "You did the crime " . $crimeType2 . " and walked away with $" . $crimeMoney;
+        }
+        $res->success = true;
+    } else {
+        $res->message = "Database error";
+    }
+}
+
+function crime3(){
+    global $res, $db;
+
+    $crimeType3 = $_POST['crimeType3'] ?? false;
+
+    $crimeMoney = rand(200, 500);
+
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    
+    session_start();
+    $stm = $db->prepare($query);
+    $stm->bindParam(":curruser", $_SESSION['username']);
+    
+    if ($stm->execute()) {
+        $res->session = $_SESSION;
+        if ($stm->rowCount() == 1){
+            $res->message = "You did the crime " . $crimeType3 . " and walked away with $" . $crimeMoney;
+        }
+        $res->success = true;
+    } else {
+        $res->message = "Database error";
+    }
+}
+
+function crime4(){
+    global $res, $db;
+
+    $crimeType4 = $_POST['crimeType4'] ?? false;
+
+    $crimeMoney = rand(20, 200);
+
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    
+    session_start();
+    $stm = $db->prepare($query);
+    $stm->bindParam(":curruser", $_SESSION['username']);
+    
+    if ($stm->execute()) {
+        $res->session = $_SESSION;
+        if ($stm->rowCount() == 1){
+            $res->message = "You did the crime " . $crimeType4 . " and walked away with $" . $crimeMoney;
+        }
+        $res->success = true;
+    } else {
+        $res->message = "Database error";
+    }
+}

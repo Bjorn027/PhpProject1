@@ -64,7 +64,7 @@
   <?php
     session_start();
     if ($_SESSION){
-      header("location:mail.php");
+      header("location:crime.php");
     }
         $dbhost = "localhost";
         $dbname = "usermoney";
@@ -112,7 +112,7 @@ function register(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       window.location.href='/PhpProject1/mail.php'
+       window.location.href='/PhpProject1/crime.php'
      }
      else{
        alert(res.message)
@@ -131,7 +131,7 @@ function login(){
     $('#res').html(res)
     
     if (res.success == true){
-       window.location.href='/PhpProject1/mail.php'
+       window.location.href='/PhpProject1/crime.php'
      }
      else{
        alert(res.message)

@@ -90,7 +90,7 @@
     </table>
             <br>
             <li>
-            <button type="button" onclick="location.href='/PhpProject1/mail.php'" class="btn btn-outline-danger btn-block">Mail</button>
+            <button type="button" onclick="location.href='/PhpProject1/crime.php'" class="btn btn-outline-danger btn-block">Crime</button>
             </li>
             <li>
             <button type="button" onclick="location.href='/PhpProject1/mug.php'" class="btn btn-outline-danger btn-block">Mug</button>

@@ -35,11 +35,15 @@
   <div class="form-group container wrapper fadeInDown">
       <div id="formContent"
       
-        <label class="fadeIn first"><h5>Who would you like to mail?</h5></label><br>
+        <label class="fadeIn first"><h5>Crime</h5></label><br>
         <form>
-        <input type="text" class="form-control fadeIn third" placeholder="Enter Name"><br>
-        <textarea name="sendmail" rows="7" cols="50" placeholder="Enter what you would like to send"></textarea>
-        <button type="button" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+        <div class="custom-control custom-radio fadeIn second">
+  
+<br>
+<button type="button" onclick="crime()" id="bank" value="'Rob a local bank'" class="btn  btn-outline-danger fadeIn second">Rob a local bank</button><br>
+<button type="button" onclick="crime2()" id="store" value="'Rob a liquorstore'" class="btn  btn-outline-danger fadeIn third">Rob a liquorstore</button>
+<button type="button" onclick="crime3()" id="protect" value="'Get protection cash'" class="btn  btn-outline-danger fadeIn fourth">Get protection cash</button>
+<button type="button" onclick="crime4()" id="purse" value="'Snatch a lady's purse'" class="btn  btn-outline-danger fadeIn fifth">Snatch a lady's purse</button><br><br>
         </form>
       </div>
     </div>
@@ -95,7 +99,7 @@
     </table>
             <br>
             <li>
-            <button type="button" onclick="location.href='/PhpProject1/mail.php'" class="btn btn-outline-danger btn-block">Mail</button>
+            <button type="button" onclick="location.href='/PhpProject1/crime.php'" class="btn btn-outline-danger btn-block">Crime</button>
             </li>
             <li>
             <button type="button" onclick="location.href='/PhpProject1/mug.php'" class="btn btn-outline-danger btn-block">Mug</button>
@@ -144,6 +148,70 @@ var server = 'actions.php'
       window.location.href='/PhpProject1/index.php'
     }
   })
+}
+
+function crime(){
+  
+  var data = {
+    action: "crime",
+    crimeType: $('#bank').val()
+  }
+  $.post(server, data, (res) => {
+    $('#res').html(res)
+     if (res.success == true){
+       alert(res.message)
+     }
+          
+  })
+  
+}
+
+function crime2(){
+  
+  var data = {
+    action: "crime2",
+    crimeType2: $('#store').val()
+  }
+  $.post(server, data, (res) => {
+    $('#res').html(res)
+     if (res.success == true){
+       alert(res.message)
+     }
+          
+  })
+  
+}
+
+function crime3(){
+  
+  var data = {
+    action: "crime3",
+    crimeType3: $('#protect').val()
+  }
+  $.post(server, data, (res) => {
+    $('#res').html(res)
+     if (res.success == true){
+       alert(res.message)
+     }
+          
+  })
+  
+}
+
+function crime4(){
+  
+  var data = {
+    action: "crime4",
+    crimeType4: $('#purse').val()
+  }
+  $.post(server, data, (res) => {
+    $('#res').html(res)
+     if (res.success == true){
+       alert(res.message)
+     }
+          
+  })
+  
 }
     </script>
   </body>
