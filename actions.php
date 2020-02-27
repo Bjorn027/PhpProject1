@@ -40,6 +40,9 @@ switch ($action) {
     case "crime4":
         crime4();
         break;
+    case "refresh":
+        refreshStam();
+        break;
     default:
         $res->message = "No action provided";
 }
@@ -62,7 +65,7 @@ function register()
 
     $passHash = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = 'INSERT INTO user (username, passhash, money) VALUE (:username, :pass, 10000)';
+    $query = 'INSERT INTO user (username, passhash, money, stam) VALUE (:username, :pass, 10000, 100)';
     $stm = $db->prepare($query);
 
     $stm->bindParam(":username", $username);
@@ -136,20 +139,27 @@ function mug(){
     }
     $mugmoney = rand(700, 1200);
 
-    $query = "UPDATE user set money = money - $mugmoney where username = :username;
-              UPDATE user set money = money + $mugmoney where username = :curruser";
-    
-    session_start();
+    $query = "UPDATE user set money = money - $mugmoney where username = :username";
     $stm = $db->prepare($query);
+    session_start();
+    
     $stm->bindParam(":username", $username2);
-    $stm->bindParam(":curruser", $_SESSION['username']);
+    
     
     if ($stm->execute()) {
         $res->session = $_SESSION;
         if ($stm->rowCount() == 1){
             $res->message = "You stole $" . $mugmoney . " of " . $username2 . "'s hard earned money";
+            $query = "UPDATE user set stam = stam - 10 where username = :curruser;
+                      UPDATE user set money = money + $mugmoney where username = :curruser";
+            $stm = $db->prepare($query);
+            $stm->bindParam(":curruser", $_SESSION['username']);
         }
-        $res->success = true;
+        if($stm->execute()){
+            $res->success = true;
+        }else{
+            $res->message = "Database error";    
+        }
     } else {
         $res->message = "Database error";
     }
@@ -168,18 +178,34 @@ function shoot()
     
     else {
         $res->message = "User is dead or doesnt exist";
+        
     }
 
-    $query = 'DELETE from user WHERE username = :username';
+    $query = "DELETE from user WHERE username = :username";
     $stm = $db->prepare($query);
 
+    session_start();
     $stm->bindParam(":username", $username1);
     
+
     if ($stm->execute()) {
-        if ($stm->rowCount() == 1){
-            $res->message = "Ripperoni " . $username1 . " is sleeping with the fishes";
+        
+        if($stm->rowCount() == 0){
+            $res->message = "User is dead or doesnt exist";
         }
-        $res->success = true;
+        else {
+            $res->message = "Ripperoni " . $username1 . " is sleeping with the fishes";
+        $query = "UPDATE user set stam = stam - 10 where username = :curruser";
+        
+        $stm = $db->prepare($query);
+        $stm->bindParam(":curruser", $_SESSION['username']);
+        }
+
+        if($stm->execute()){
+            $res->success = true;
+        }else{
+            $res->message = "Database error";    
+        }
     } else {
         $res->message = "Database error";
     }
@@ -193,7 +219,8 @@ function crime(){
 
     $crimeMoney = rand(2000, 3000);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
+              UPDATE user set stam = stam - 10 where username = :curruser";
     
     session_start();
     $stm = $db->prepare($query);
@@ -217,7 +244,8 @@ function crime2(){
 
     $crimeMoney = rand(600, 1000);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
+              UPDATE user set stam = stam - 8 where username = :curruser";
     
     session_start();
     $stm = $db->prepare($query);
@@ -241,7 +269,8 @@ function crime3(){
 
     $crimeMoney = rand(200, 500);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
+              UPDATE user set stam = stam - 5 where username = :curruser";
     
     session_start();
     $stm = $db->prepare($query);
@@ -265,12 +294,15 @@ function crime4(){
 
     $crimeMoney = rand(20, 200);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
+              UPDATE user set stam = stam - 2 where username = :curruser";
     
     session_start();
     $stm = $db->prepare($query);
     $stm->bindParam(":curruser", $_SESSION['username']);
     
+    
+
     if ($stm->execute()) {
         $res->session = $_SESSION;
         if ($stm->rowCount() == 1){
@@ -280,4 +312,18 @@ function crime4(){
     } else {
         $res->message = "Database error";
     }
+}
+
+function refreshStam() {
+    global $res, $db;
+    $value1 = $_POST['value1'] ?? false;
+    $query = "UPDATE user set stam = :value1 where username = :curruser";
+    $stm = $db->prepare($query);
+    $stm->bindParam(":value1", $value1);
+    $stm->bindParam(":curruser", $_SESSION['username']);
+
+    if ($stm->execute()){
+
+    }
+
 }

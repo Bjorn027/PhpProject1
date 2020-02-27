@@ -40,10 +40,11 @@
         <div class="custom-control custom-radio fadeIn second">
   
 <br>
-<button type="button" onclick="crime()" id="bank" value="'Rob a local bank'" class="btn  btn-outline-danger fadeIn second">Rob a local bank</button><br>
+<button type="button" onclick="crime();" id="bank" value="'Rob a local bank'" class="btn  btn-outline-danger fadeIn second">Rob a local bank</button><br>
 <button type="button" onclick="crime2()" id="store" value="'Rob a liquorstore'" class="btn  btn-outline-danger fadeIn third">Rob a liquorstore</button>
 <button type="button" onclick="crime3()" id="protect" value="'Get protection cash'" class="btn  btn-outline-danger fadeIn fourth">Get protection cash</button>
 <button type="button" onclick="crime4()" id="purse" value="'Snatch a lady's purse'" class="btn  btn-outline-danger fadeIn fifth">Snatch a lady's purse</button><br><br>
+
         </form>
       </div>
     </div>
@@ -82,7 +83,7 @@
         </tr>
         
         <?php
-            $query = "SELECT username, money FROM user WHERE username = '$_SESSION[username]'";
+            $query = "SELECT username, money, stam FROM user WHERE username = '$_SESSION[username]'";
             $stm = $con->prepare($query);
             $stm->execute();
             $stm->setFetchMode(PDO::FETCH_ASSOC);
@@ -92,7 +93,9 @@
                 
                 . "<td>Money".":"."</td>"
                 . "<td>"  ."$" ."{$row['money']}</td>"
-                . "</tr>";
+                . "</tr>"
+                . "<td>&nbsp;&nbsp;Stamina".":"."</td>"
+                . "<td>" . "{$row['stam']}</td>";
             }
         ?>
         
@@ -137,6 +140,7 @@
     <script>
 
 var server = 'actions.php'
+
 
   function logout(){
   var data = {
