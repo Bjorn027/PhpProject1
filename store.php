@@ -175,53 +175,6 @@ function crime(){
   
 }
 
-function crime2(){
-  
-  var data = {
-    action: "crime2",
-    crimeType2: $('#store').val()
-  }
-  $.post(server, data, (res) => {
-    $('#res').html(res)
-     if (res.success == true){
-       alert(res.message)
-     }
-          
-  })
-  
-}
-
-function crime3(){
-  
-  var data = {
-    action: "crime3",
-    crimeType3: $('#protect').val()
-  }
-  $.post(server, data, (res) => {
-    $('#res').html(res)
-     if (res.success == true){
-       alert(res.message)
-     }
-          
-  })
-  
-}
-
-function crime4(){
-  
-  var data = {
-    action: "crime4",
-    crimeType4: $('#purse').val()
-  }
-  $.post(server, data, (res) => {
-    $('#res').html(res)
-     if (res.success == true){
-       alert(res.message)
-     }
-          
-  })
-  
-}
     </script>
   </body>
 </html>

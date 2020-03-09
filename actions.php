@@ -219,8 +219,8 @@ function crime(){
 
     $crimeMoney = rand(2000, 3000);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
-              UPDATE user set stam = stam - 10 where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser AND stam >= 10;
+              UPDATE user set stam = stam - 10 where username = :curruser AND stam >= 10";
     
     session_start();
     $stm = $db->prepare($query);
@@ -231,6 +231,7 @@ function crime(){
         if ($stm->rowCount() == 1){
             $res->message = "You did the crime " . $crimeType . " and walked away with $" . $crimeMoney;
         }
+        else {$res->message = "Not enough stamina";}
         $res->success = true;
     } else {
         $res->message = "Database error";
@@ -244,8 +245,8 @@ function crime2(){
 
     $crimeMoney = rand(600, 1000);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
-              UPDATE user set stam = stam - 8 where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser AND stam >= 8;
+              UPDATE user set stam = stam - 8 where username = :curruser AND stam >= 8";
     
     session_start();
     $stm = $db->prepare($query);
@@ -256,6 +257,7 @@ function crime2(){
         if ($stm->rowCount() == 1){
             $res->message = "You did the crime " . $crimeType2 . " and walked away with $" . $crimeMoney;
         }
+        else {$res->message = "Not enough stamina";}
         $res->success = true;
     } else {
         $res->message = "Database error";
@@ -269,8 +271,8 @@ function crime3(){
 
     $crimeMoney = rand(200, 500);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
-              UPDATE user set stam = stam - 5 where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser AND stam >= 5;
+              UPDATE user set stam = stam - 5 where username = :curruser AND stam >= 5";
     
     session_start();
     $stm = $db->prepare($query);
@@ -281,6 +283,7 @@ function crime3(){
         if ($stm->rowCount() == 1){
             $res->message = "You did the crime " . $crimeType3 . " and walked away with $" . $crimeMoney;
         }
+        else {$res->message = "Not enough stamina";}
         $res->success = true;
     } else {
         $res->message = "Database error";
@@ -294,8 +297,8 @@ function crime4(){
 
     $crimeMoney = rand(20, 200);
 
-    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser;
-              UPDATE user set stam = stam - 2 where username = :curruser";
+    $query = "UPDATE user set money = money + $crimeMoney where username = :curruser AND stam >= 2;
+              UPDATE user set stam = stam - 2 where username = :curruser AND stam >= 2";
     
     session_start();
     $stm = $db->prepare($query);
@@ -308,6 +311,7 @@ function crime4(){
         if ($stm->rowCount() == 1){
             $res->message = "You did the crime " . $crimeType4 . " and walked away with $" . $crimeMoney;
         }
+        else {$res->message = "Not enough stamina";}
         $res->success = true;
     } else {
         $res->message = "Database error";
@@ -318,6 +322,8 @@ function refreshStam() {
     global $res, $db;
     $value1 = $_POST['value1'] ?? false;
     $query = "UPDATE user set stam = :value1 where username = :curruser";
+
+    session_start();
     $stm = $db->prepare($query);
     $stm->bindParam(":value1", $value1);
     $stm->bindParam(":curruser", $_SESSION['username']);

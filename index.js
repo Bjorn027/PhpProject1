@@ -1,5 +1,5 @@
 var up = true;
-var value1 = 99;
+var value1 = 1;
 var increment = 1;
 var ceiling = 100;
 
@@ -13,7 +13,7 @@ function PerformCalc() {
   } 
 }
 
-setInterval(PerformCalc, 1000);
+setInterval(PerformCalc, 2000);
 
 function refreshStam() {
     var data = {
@@ -24,5 +24,4 @@ function refreshStam() {
         $('#res').html(res)
                  
       })
-      
-    }
+}

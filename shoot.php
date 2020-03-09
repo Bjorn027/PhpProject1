@@ -2,11 +2,9 @@
 <html lang="en">
   <head>
     <title>Mafia Game</title>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="index.js"></script>
@@ -55,6 +53,12 @@
             <h3>Mafia Game</h3>
         </div>
 
+        <?php
+        date_default_timezone_set("America/Moncton");
+        $now = new DateTime();
+        echo $now->format("Y-m-d H:i:s") . '<br>';
+        ?>
+        
         <ul class="list-unstyled test components">
             <br><br>
     <table>
