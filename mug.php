@@ -107,6 +107,9 @@
             <li>
             <button type="button" onclick="location.href='/PhpProject1/shoot.php'" class="btn btn-outline-danger btn-block">Shoot</button>
             </li>
+            <li>
+            <button type="button" onclick="location.href='/PhpProject1/store.php'" class="btn btn-outline-danger btn-block">Store</button>
+            </li>
             
             <li>
             <button type="button" onclick="location.href='/PhpProject1/userlist.php'" class="btn btn-outline-danger btn-block">Userlist</button>
@@ -162,7 +165,7 @@ function mug(){
      if (res.success == true){
        alert(res.message)
      }
-     else alert("You forgot to enter who you are mugging")
+     else alert("You forgot to enter who you are mugging123")
      
   })
   

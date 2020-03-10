@@ -43,6 +43,9 @@ switch ($action) {
     case "refresh":
         refreshStam();
         break;
+    case "refill":
+        refill();
+        break;
     default:
         $res->message = "No action provided";
 }
@@ -139,29 +142,43 @@ function mug(){
     }
     $mugmoney = rand(700, 1200);
 
-    $query = "UPDATE user set money = money - $mugmoney where username = :username";
+    
+    $query = "SELECT @usercount := count(*) FROM user WHERE username = :username; 
+                UPDATE user set stam = stam - 10 where username = :curruser and stam >= 10 AND @usercount=1";
     $stm = $db->prepare($query);
+    
     session_start();
     
-    $stm->bindParam(":username", $username2);
     
+    $stm->bindParam(":curruser", $_SESSION['username']);
+    $stm->bindParam(":username", $username2);
     
     if ($stm->execute()) {
         $res->session = $_SESSION;
         if ($stm->rowCount() == 1){
-            $res->message = "You stole $" . $mugmoney . " of " . $username2 . "'s hard earned money";
-            $query = "UPDATE user set stam = stam - 10 where username = :curruser;
-                      UPDATE user set money = money + $mugmoney where username = :curruser";
+            
+            $query = "UPDATE user set money = money - $mugmoney where username = :username and stam >= 10 AND @usercount=1;
+                      UPDATE user set money = money + $mugmoney where username = :curruser and stam >= 10 AND @usercount=1";
             $stm = $db->prepare($query);
             $stm->bindParam(":curruser", $_SESSION['username']);
+            $stm->bindParam(":username", $username2);
+            if ($stm->rowCount() == 2){
+                $res->message = "You stole $" . $mugmoney . " of " . $username2 . "'s hard earned money";
+                
+            }
+            else  {
+                $res->message = "User is dead or doesnt exist22";
+            }
+        }
+        else {$res->message = "Not enough stamina";
         }
         if($stm->execute()){
             $res->success = true;
         }else{
-            $res->message = "Database error";    
+            $res->message = "Database error1";    
         }
     } else {
-        $res->message = "Database error";
+        $res->message = "Database error2";
     }
 }
 
@@ -332,4 +349,27 @@ function refreshStam() {
 
     }
 
+}
+
+function refill(){
+    global $res, $db;
+
+    $refillS = $_POST['refills'] ?? false;
+
+    $query = "UPDATE user set money = money - 5000 where username = :curruser;
+              UPDATE user set stam = 100";
+    
+    session_start();
+    $stm = $db->prepare($query);
+    $stm->bindParam(":curruser", $_SESSION['username']);
+    
+    if ($stm->execute()) {
+        $res->session = $_SESSION;
+        if ($stm->rowCount() == 1){
+            $res->message = "You refilled your stamina at the cost of $5000";
+        }
+        $res->success = true;
+    } else {
+        $res->message = "Database error";
+    }
 }

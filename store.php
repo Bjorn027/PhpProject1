@@ -34,15 +34,13 @@
   <div class="form-group container wrapper fadeInDown">
       <div id="formContent"
       
-        <label class="fadeIn first"><h5>Crime</h5></label><br>
+        <label class="fadeIn first"><h5>Store</h5></label><br>
         <form>
         <div class="custom-control custom-radio fadeIn second">
   
 <br>
-<button type="button" onclick="crime();" id="bank" value="'Rob a local bank'" class="btn  btn-outline-danger fadeIn second">Rob a local bank</button><br>
-<button type="button" onclick="crime2()" id="store" value="'Rob a liquorstore'" class="btn  btn-outline-danger fadeIn third">Rob a liquorstore</button>
-<button type="button" onclick="crime3()" id="protect" value="'Get protection cash'" class="btn  btn-outline-danger fadeIn fourth">Get protection cash</button>
-<button type="button" onclick="crime4()" id="purse" value="'Snatch a lady's purse'" class="btn  btn-outline-danger fadeIn fifth">Snatch a lady's purse</button><br><br>
+<button type="button" onclick="refill();" id="fill" value="'refill stam'" class="btn  btn-outline-danger fadeIn second">Refill Stamina - $2000</button><br>
+<br>
 
         </form>
       </div>
@@ -115,6 +113,9 @@
             <li>
             <button type="button" onclick="location.href='/PhpProject1/shoot.php'" class="btn btn-outline-danger btn-block">Shoot</button>
             </li>
+            <li>
+            <button type="button" onclick="location.href='/PhpProject1/store.php'" class="btn btn-outline-danger btn-block">Store</button>
+            </li>
             
             <li>
             <button type="button" onclick="location.href='/PhpProject1/userlist.php'" class="btn btn-outline-danger btn-block">Userlist</button>
@@ -159,11 +160,11 @@ var server = 'actions.php'
   })
 }
 
-function crime(){
+function refill(){
   
   var data = {
-    action: "crime",
-    crimeType: $('#bank').val()
+    action: "refill",
+    refillS: $('#fill').val()
   }
   $.post(server, data, (res) => {
     $('#res').html(res)
