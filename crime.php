@@ -30,19 +30,21 @@
   </nav>
 
   <div class="testy">
-  <form>
+    <form>
   <div class="form-group container wrapper fadeInDown">
       <div id="formContent"
       
-        <label class="fadeIn first"><h5>Crime</h5></label><br>
+        <label class="fadeIn first"><br><h5>Crime</h5></label>
         <form>
         <div class="custom-control custom-radio fadeIn second">
   
-<br>
+
+        <small id="alert">Click the crime you would like to do!</small><br><br>
 <button type="button" onclick="crime();" id="bank" value="'Rob a local bank'" class="btn  btn-outline-danger fadeIn second">Rob a local bank</button><br>
 <button type="button" onclick="crime2()" id="store" value="'Rob a liquorstore'" class="btn  btn-outline-danger fadeIn third">Rob a liquorstore</button>
 <button type="button" onclick="crime3()" id="protect" value="'Get protection cash'" class="btn  btn-outline-danger fadeIn fourth">Get protection cash</button>
 <button type="button" onclick="crime4()" id="purse" value="'Snatch a lady's purse'" class="btn  btn-outline-danger fadeIn fifth">Snatch a lady's purse</button><br><br>
+
 
         </form>
       </div>
@@ -171,7 +173,7 @@ function crime(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       alert(res.message)
+      document.getElementById("alert").innerHTML = res.message;
      }
           
   })
@@ -187,7 +189,7 @@ function crime2(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       alert(res.message)
+      document.getElementById("alert").innerHTML = res.message;
      }
           
   })
@@ -203,7 +205,7 @@ function crime3(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       alert(res.message)
+      document.getElementById("alert").innerHTML = res.message;
      }
           
   })
@@ -219,7 +221,7 @@ function crime4(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       alert(res.message)
+      document.getElementById("alert").innerHTML = res.message;
      }
           
   })

@@ -30,7 +30,7 @@
       <input type="text" id="username" class="fadeIn second"  placeholder="username">
       <input type="password" id="password" class="fadeIn third"  placeholder="password">
       <input type="button" onclick="register()" class="fadeIn fourth btn-outline-danger" value="Register">
-      <input type="button" onclick="login()" class="fadeIn fourth btn-outline-danger" value="Log In">
+      <input type="button" onclick="login()"  class="fadeIn fourth btn-outline-danger" value="Log In">
     </form>
 
     
@@ -118,6 +118,18 @@ function register(){
   })
   
 }
+
+$(document).keyup(function(event) {
+    if ($("#password").is(":focus") && event.key == "Enter") {
+        login();
+          }
+});
+
+$(document).keyup(function(event) {
+    if ($("#username").is(":focus") && event.key == "Enter") {
+        login();
+          }
+});
 
 function login(){
   var data = {

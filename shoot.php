@@ -29,12 +29,13 @@
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
   <div class="testy">
-  <form>
+  <form onsubmit="return false">
   <div class="form-group container wrapper fadeInDown">
       <div id="formContent"
         
-        <label class="fadeIn first"><h5>Who would you like to shoot?</h5></label><br>
-        <small class="fadeIn second">Be careful. Some users do not take kindly to being attacked. You may find yourself six feet under.</small>
+        <label class="fadeIn first"><br><h5>Who would you like to shoot?</h5></label><br>
+        <small class="fadeIn second" id="alert3">Be careful. Some users do not take kindly to being attacked. You may find yourself six feet under.</small>
+
         <br><br>
         <form>
         <input type="text" id="username1" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
@@ -150,6 +151,13 @@
   })
 }
 
+$(document).keyup(function(event) {
+    if ($("#username1").is(":focus") && event.key == "Enter") {
+        shoot();
+          }
+});
+
+
 function shoot(){
   var data = {
     action: "shoot",
@@ -158,9 +166,9 @@ function shoot(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       alert(res.message)
+       document.getElementById("alert3").innerHTML = res.message;
      }
-     else alert("You forgot to enter who you are shooting")
+     else document.getElementById("alert3").innerHTML = "You forgot to enter who you are shooting";
      
   })
   

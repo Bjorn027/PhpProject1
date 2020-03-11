@@ -32,9 +32,10 @@
   <div class="testy">
   <form>
   <div class="form-group container wrapper fadeInDown">
-      <div id="formContent"
+      <div id="formContent">
       
-        <label class="fadeIn first"><h5>Store</h5></label><br>
+        <label class="fadeIn first"><br><h5>Store</h5></label><br>
+        <small class="fadeIn second" id="alert4">Hello stranger buy whatever you need.</small>
         <form>
         <div class="custom-control custom-radio fadeIn second">
   
@@ -169,9 +170,11 @@ function refill(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       alert(res.message)
+       document.getElementById("alert4").innerHTML = res.message;
      }
-          
+          else {
+            document.getElementById("alert4").innerHTML = "You are too broke to afford that, get lost!"
+          }
   })
   
 }

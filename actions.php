@@ -143,8 +143,8 @@ function mug(){
     $mugmoney = rand(700, 1200);
 
     
-    $query = "SELECT @usercount := count(*) FROM user WHERE username = :username; 
-                UPDATE user set stam = stam - 10 where username = :curruser and stam >= 10 AND @usercount=1";
+    $query = "CALL mug(:curruser, :username, 10, $mugmoney)";
+    
     $stm = $db->prepare($query);
     
     session_start();
@@ -154,29 +154,34 @@ function mug(){
     $stm->bindParam(":username", $username2);
     
     if ($stm->execute()) {
-        $res->session = $_SESSION;
-        if ($stm->rowCount() == 1){
-            
-            $query = "UPDATE user set money = money - $mugmoney where username = :username and stam >= 10 AND @usercount=1;
-                      UPDATE user set money = money + $mugmoney where username = :curruser and stam >= 10 AND @usercount=1";
-            $stm = $db->prepare($query);
-            $stm->bindParam(":curruser", $_SESSION['username']);
-            $stm->bindParam(":username", $username2);
-            if ($stm->rowCount() == 2){
+        $res->success = true;
+        
+        $row = $stm->fetch(PDO::FETCH_ASSOC);
+        // success: 1, stolen: ###
+        // success: 0, message: "sdsds"
+        if($row['success']){
                 $res->message = "You stole $" . $mugmoney . " of " . $username2 . "'s hard earned money";
-                
-            }
-            else  {
-                $res->message = "User is dead or doesnt exist22";
-            }
-        }
-        else {$res->message = "Not enough stamina";
-        }
-        if($stm->execute()){
-            $res->success = true;
         }else{
-            $res->message = "Database error1";    
+            switch($row['message']){
+                case 'muggee not found':
+                    $res->message = "User is dead or doesn't exist";
+                    break;
+                case 'user too broke':
+                    $res->message = "This user is to broke to steal from";
+                    break;
+                case 'not enough stamina':
+                    $res->message = "Not enough stamina";
+                    break;
+            }
+            
         }
+        
+        
+        
+        
+        
+        
+        
     } else {
         $res->message = "Database error2";
     }
@@ -198,31 +203,34 @@ function shoot()
         
     }
 
-    $query = "DELETE from user WHERE username = :username";
+    $query = "CALL shoot(:curruser, :username, 10)";
     $stm = $db->prepare($query);
 
     session_start();
     $stm->bindParam(":username", $username1);
-    
+    $stm->bindParam(":curruser", $_SESSION['username']);
 
     if ($stm->execute()) {
+        $res->success = true;
+        $row = $stm->fetch(PDO::FETCH_ASSOC);
+
         
-        if($stm->rowCount() == 0){
-            $res->message = "User is dead or doesnt exist";
+        if($row['success']){
+            $res->message = "Ripperoni " . $username1 . " is sleeping with the fishes";
         }
         else {
-            $res->message = "Ripperoni " . $username1 . " is sleeping with the fishes";
-        $query = "UPDATE user set stam = stam - 10 where username = :curruser";
-        
-        $stm = $db->prepare($query);
-        $stm->bindParam(":curruser", $_SESSION['username']);
+            switch($row['message']){
+                case 'shootee not found':
+                    $res->message = "User is dead or doesn't exist";
+                break;
+            
+                case 'not enough stamina':
+                    $res->message = "Not enough stamina";
+                break;
+            }
         }
 
-        if($stm->execute()){
-            $res->success = true;
-        }else{
-            $res->message = "Database error";    
-        }
+        
     } else {
         $res->message = "Database error";
     }
@@ -356,8 +364,8 @@ function refill(){
 
     $refillS = $_POST['refills'] ?? false;
 
-    $query = "UPDATE user set money = money - 5000 where username = :curruser;
-              UPDATE user set stam = 100";
+    $query = "UPDATE user set money = money - 5000 where username = :curruser and money >= 5000;
+              UPDATE user set stam = 100 where username = :curruser and money >= 5000";
     
     session_start();
     $stm = $db->prepare($query);
@@ -367,8 +375,11 @@ function refill(){
         $res->session = $_SESSION;
         if ($stm->rowCount() == 1){
             $res->message = "You refilled your stamina at the cost of $5000";
+            $res->success = true;
         }
-        $res->success = true;
+        else {
+            $res->message = "Database error";
+        }
     } else {
         $res->message = "Database error";
     }

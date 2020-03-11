@@ -30,12 +30,12 @@
     <span class="navbar-brand mb-0 h1">M</span>
   </nav>
   <div class="testy">
-  <form>
+  <form onsubmit="return false">
   <div class="form-group container wrapper fadeInDown">
-      <div id="formContent"
+      <div id="formContent">
       
-        <label class="fadeIn first"><h5>Who would you like to mug?</h5></label><br>
-        <small class="fadeIn second">Be careful. Some users do not take kindly to being stolen from. You may find yourself six feet under.</small>
+        <label class="fadeIn first"><br><h5>Who would you like to mug?</h5></label><br>
+        <small class="fadeIn second" id="alert2">Be careful. Some users do not take kindly to being stolen from. You may find yourself six feet under.</small>
         <br><br>
         <form>
         <input type="text" id="username2" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
@@ -152,6 +152,11 @@ function logout(){
   })
 }
    
+$(document).keyup(function(event) {
+    if ($("#username2").is(":focus") && event.key == "Enter") {
+        mug();
+          }
+});
 
 
 function mug(){
@@ -163,9 +168,9 @@ function mug(){
   $.post(server, data, (res) => {
     $('#res').html(res)
      if (res.success == true){
-       alert(res.message)
+      document.getElementById("alert2").innerHTML = res.message;
      }
-     else alert("You forgot to enter who you are mugging123")
+     else document.getElementById("alert2").innerHTML = "You forgot to enter who you are mugging";
      
   })
   
