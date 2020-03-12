@@ -38,7 +38,7 @@
         <label class="fadeIn first"><h5>Users List</h5></label><br>
         
         <form>
-        <table class="table table-striped table-dark">
+<table class="table table-striped table-dark">
   <thead>
     <tr>
       <th scope="col">UserID</th>
@@ -64,7 +64,7 @@
         ?>
 
   </tbody>
-  </table>
+</table>
         </form>
       </div>
     </div>

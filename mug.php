@@ -32,14 +32,14 @@
   <div class="testy">
   <form onsubmit="return false">
   <div class="form-group container wrapper fadeInDown">
-      <div id="formContent">
+      <div id="formContent"
       
         <label class="fadeIn first"><br><h5>Who would you like to mug?</h5></label><br>
         <small class="fadeIn second" id="alert2">Be careful. Some users do not take kindly to being stolen from. You may find yourself six feet under.</small>
         <br><br>
         <form>
         <input type="text" id="username2" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
-        <button type="button" onclick="mug()" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+        <button type="button" onclick="mug()" class="btn btn-outline-danger fadeIn fifth">Cost - 10stm</button>
         </form>
       </div>
     </div>

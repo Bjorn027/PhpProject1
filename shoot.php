@@ -39,7 +39,7 @@
         <br><br>
         <form>
         <input type="text" id="username1" class="form-control fadeIn third" placeholder="Enter Name"><br><br>
-        <button type="button" onclick="shoot()" class="btn btn-outline-danger fadeIn fifth">Submit</button>
+        <button type="button" onclick="shoot()" class="btn btn-outline-danger fadeIn fifth">Cost - 30stm</button>
         </form>
     </div>
   </div>

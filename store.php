@@ -40,7 +40,7 @@
         <div class="custom-control custom-radio fadeIn second">
   
 <br>
-<button type="button" onclick="refill();" id="fill" value="'refill stam'" class="btn  btn-outline-danger fadeIn second">Refill Stamina - $2000</button><br>
+<button type="button" onclick="refill();" id="fill" value="'refill stam'" class="btn  btn-outline-danger fadeIn second">Refill Stamina - $5000</button><br>
 <br>
 
         </form>

@@ -40,10 +40,10 @@
   
 
         <small id="alert">Click the crime you would like to do!</small><br><br>
-<button type="button" onclick="crime();" id="bank" value="'Rob a local bank'" class="btn  btn-outline-danger fadeIn second">Rob a local bank</button><br>
-<button type="button" onclick="crime2()" id="store" value="'Rob a liquorstore'" class="btn  btn-outline-danger fadeIn third">Rob a liquorstore</button>
-<button type="button" onclick="crime3()" id="protect" value="'Get protection cash'" class="btn  btn-outline-danger fadeIn fourth">Get protection cash</button>
-<button type="button" onclick="crime4()" id="purse" value="'Snatch a lady's purse'" class="btn  btn-outline-danger fadeIn fifth">Snatch a lady's purse</button><br><br>
+<button type="button" onclick="crime();" id="bank" value="'Rob a local bank'" class="btn  btn-outline-danger fadeIn second">Rob a local bank - 10stm</button><br>
+<button type="button" onclick="crime2()" id="store" value="'Rob a liquorstore'" class="btn  btn-outline-danger fadeIn third">Rob a liquorstore - 8stm</button>
+<button type="button" onclick="crime3()" id="protect" value="'Get protection cash'" class="btn  btn-outline-danger fadeIn fourth">Get protection cash - 5stm</button>
+<button type="button" onclick="crime4()" id="purse" value="'Snatch a lady's purse'" class="btn  btn-outline-danger fadeIn fifth">Snatch a lady's purse - 2stm</button><br><br>
 
 
         </form>

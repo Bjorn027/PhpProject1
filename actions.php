@@ -203,7 +203,7 @@ function shoot()
         
     }
 
-    $query = "CALL shoot(:curruser, :username, 10)";
+    $query = "CALL shoot(:curruser, :username, 30)";
     $stm = $db->prepare($query);
 
     session_start();
@@ -364,8 +364,8 @@ function refill(){
 
     $refillS = $_POST['refills'] ?? false;
 
-    $query = "UPDATE user set money = money - 5000 where username = :curruser and money >= 5000;
-              UPDATE user set stam = 100 where username = :curruser and money >= 5000";
+    $query = "UPDATE user set stam = 100 where username = :curruser and money >= 5000;
+              UPDATE user set money = money - 5000 where username = :curruser and money >= 5000";
     
     session_start();
     $stm = $db->prepare($query);
